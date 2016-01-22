@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block head_title %}Profil{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="container margin-top-50">
+    <!-- <div class="{{ edit }}"> -->
+    <div class="row">
+        <div class="col-sm-4">
+            <h1 class="page_header">Profil</h1>
+
+            <div> Kürzel: {{ user }} </div>
+            <div> Nachname: {{ user.last_name }} </div>
+            <div> Vorname: {{ user.first_name }} </div>
+            <div> E-mail: {{ user.email }} </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        {% if "names" in message.tags %}
+                            <li{% if message.tags %}
+                                class="alert alert-warning list-unstyled"{% endif %}>{{ message }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <button id="toggle_form" type="button" class="btn btn-default btn-sm margin-top-10">
+                <span class="glyphicon glyphicon-pencil" id="editButton"></span>
+                <span> Bearbeiten</span>
+            </button>
+            <div id="hidden_form" style="display:none;">
+                <form role="form" method="post">
+                    {% csrf_token %}
+                    <div class="input-group margin-top-10">
+                        <span class="input-group-addon">Nachname</span>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="input-group margin-top-10">
+                        <span class="input-group-addon">Vorname</span>
+                        <input type="text" class="form-control" id="vname" name="vname">
+                    </div>
+                    <div class="input-group margin-top-10">
+                        <span class="input-group-addon">Email</span>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <p class="margin-top-10">
+                        <small>Falls keine Änderungen gewünscht sind, die entsprechenden Felder leer lassen</small>
+                    </p>
+                    <button type="submit" class="btn btn-primary margin-top-10">
+                        <span class="glyphicon glyphicon-save"></span>
+                        <span>Speichern</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            {% if show_chart %}
+            <h2 class="sub_header">Meine Persönlichkeit</h2>
+            <div id="chart_div">
+                {{ chart.render|safe }}
+            </div>
+            <p class="text-right">
+                <small>Zuletzt aktualisiert am {{ date_test_finished|date:"d.m.Y" }}</small>
+            </p>
+            {% else %}
+            <p class="alert alert-warning">Noch kein <a href="{% url 'questionnaire_instructions' %}"
+                                                        class="alert-link">Persönlichkeitstest</a>
+                abgeschlossen. Beim Ändern von Antworten muss am Ende auch nochmals der "Persönlichkeitstest
+                beenden" Button geklickt werden.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row margin-top-20">
+        <div class="col-lg-12">
+            <h2 class="sub_header">Benutzer suchen</h2>
+
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        {% if "search" in message.tags %}
+                            <li{% if message.tags %}
+                                class="alert alert-warning list-unstyled"{% endif %}>{{ message }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <!-- Searchfield  -->
+            <form role="form" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="user_search" id="user_search" class="form-control" placeholder="Kürzel"
+                           value="{% if search != None %}{{ search }}{% endif %}">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+            <span> Suchen</span>
+        </button>
+      </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if users != None %}
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Table -->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Kürzel</th>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>E-mail</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for u in users %}
+                <tr>
+                    <td> {{ u.username }} </td>
+                    <td> {{ u.last_name|default:"k.A." }} </td>
+                    <td> {{ u.first_name|default:"k.A." }} </td>
+                    <td> {{ u.email|default:"k.A." }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td> Keine Suchergenisse</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

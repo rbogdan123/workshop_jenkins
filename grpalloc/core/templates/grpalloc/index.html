@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block head_title %}Startseite{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }} welcome-text alert alert-info list-unstyled text-center"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="container welcome-text">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-sm-3">
+            <img class="img-responsive" src="static/img/logo.png">
+        </div>
+        <div class="col-sm-9">
+            <h1>Gruppeneinteilung</h1>
+        </div>
+    </div>
+    <p>Diese Anwendung ermöglicht es, eine ausgegelichene Gruppeneinteilung zu erstellen. Ausgeglichen bedeutet,
+        dass
+        in jeder Gruppe in etwa diesselben Anteile verschiedener Persönlichkeiten vertreten sind. Um dies zu
+        gewährleisten, muss zunächst jeder Teilnehmer einen Persönlichkeitstest abschließen.</p>
+    <!-- Login-Button zur Weiterleitung auf Login-Maske -->
+    <div>
+        <a href="/login_page/" class="btn btn-primary margin-top-50">Login</a>
+    </div>
+</div> <!-- Ende Container -->
+
+{% endblock %}
