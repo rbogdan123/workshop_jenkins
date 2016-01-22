@@ -1,0 +1,12 @@
+arrow==0.7.0
+blessed==1.14.1
+Django==1.8.5
+django-picklefield==0.3.2
+django-q==0.7.11
+future==0.15.2
+pygal==2.0.11
+pyparsing==2.0.7
+python-dateutil==2.4.2
+six==1.10.0
+wcwidth==0.1.5
+wheel==0.26.0

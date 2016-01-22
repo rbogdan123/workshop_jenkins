@@ -1,0 +1,45 @@
+{% block questionnaire_sidebar %}
+
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="{% url 'questionnaire_instructions' %}">
+                <span>Anweisungen</span>
+            </a>
+        </li>
+
+        {% for key, value in single_finished_parts.items %}
+        <li>
+            <a href="{% url 'questionnaire_parts' part=key %}">
+                <span>Teil {{ key }}</span>
+                <span class="glyphicon glyphicon-right glyphicon-sidebar
+                    {% if value == 2 %}
+                        glyphicon-ok glyphicon-success
+                    {% elif value == 0 %}
+                        glyphicon-pencil glyphicon-not-finished
+                    {% else %}
+                        glyphicon-ok glyphicon-not-finished
+                    {% endif %}">
+                </span>
+            </a>
+        </li>
+        {% endfor %}
+
+        <li class="margin-top-50">
+            {% if all_parts_finished %}
+            <span class="alert alert-success">
+                Test abgeschlossen
+            </span>
+            {% else %}
+            <span class="alert alert-warning">
+                Test unvollständig
+            </span>
+            {% endif %}
+        </li>
+
+    </ul>
+</div>
+<!-- /#sidebar-wrapper -->
+
+{% endblock %}

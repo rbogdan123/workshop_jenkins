@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: gruppeneinteilung
+Version: 0.0.1
+Summary: Web Application to execute Guppeneinteilung
+Home-page: http://projekte.win.hs-heilbronn.de/ps/grp
+Author: Oliver Huettner
+Author-email: huettner@stud.hs-heilbronn.de
+License: CC BY-NC-SA 3.0 DE
+Description: UNKNOWN
+Keywords: teambuilding
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Lecture Team
+Classifier: License :: OSI Approved :: Creative Commons License
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Teambuilding

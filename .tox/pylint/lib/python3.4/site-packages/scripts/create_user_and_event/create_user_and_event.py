@@ -1,0 +1,171 @@
+from grpalloc.core import models
+import random
+import string
+from django.contrib.auth.models import User
+import django
+django.setup()
+
+
+def create_event_member(member_number):
+    """Create member_number members with random names."""
+    member_names = []
+    for i in range(member_number):
+        user_name = ''.join(
+            random.choice(string.ascii_lowercase) for _ in range(7))
+        user_name += str(i)
+        model = User.objects.create_user(username=user_name, password="")
+        member_names.append(user_name)
+        model.save()
+
+    return member_names
+
+
+def create_event(current_user, member):
+    """Create a new, public event with a random name."""
+    event_name = ''.join(random.choice(string.ascii_uppercase +
+                                       string.digits) for _ in range(10))
+    models.Event.objects.create(
+        event_name=event_name,
+        event_creator=current_user,
+        event_public=True,
+    )
+
+    event = models.Event.objects.get(event_name=event_name)
+
+    for single_member in member:
+        single_member_usr_instance = User.objects.get(username=single_member)
+        event.event_member.add(single_member_usr_instance)
+
+    return event_name
+
+
+def create_data(usr):
+    """Create some random data for simulating data entered by users."""
+    user = User.objects.get(username=usr)
+
+    models.Questionnaire.objects.create(usr=user)
+    model = models.Questionnaire.objects.filter(usr=user)
+
+    parts = ["2", "3", "4", "5", "6", "7", "end"]
+    for part in parts:
+        results = []
+        max_rand = 10
+        questions = 8
+        for _ in range(questions - 1):
+            points = random.randint(1, max_rand) if max_rand > 0 else 0
+            results.append(points)
+            max_rand -= points
+        results.append(max_rand)
+        random.shuffle(results)
+
+        if part == "2":
+            model.update(
+                p1q1=results[0],
+                p1q2=results[1],
+                p1q3=results[2],
+                p1q4=results[3],
+                p1q5=results[4],
+                p1q6=results[5],
+                p1q7=results[6],
+                p1q8=results[7],
+                p1f=2,
+            )
+
+        elif part == "3":
+            model.update(
+                p2q1=results[0],
+                p2q2=results[1],
+                p2q3=results[2],
+                p2q4=results[3],
+                p2q5=results[4],
+                p2q6=results[5],
+                p2q7=results[6],
+                p2q8=results[7],
+                p2f=2,
+            )
+
+        elif part == "4":
+            model.update(
+                p3q1=results[0],
+                p3q2=results[1],
+                p3q3=results[2],
+                p3q4=results[3],
+                p3q5=results[4],
+                p3q6=results[5],
+                p3q7=results[6],
+                p3q8=results[7],
+                p3f=2,
+            )
+
+        elif part == "5":
+            model.update(
+                p4q1=results[0],
+                p4q2=results[1],
+                p4q3=results[2],
+                p4q4=results[3],
+                p4q5=results[4],
+                p4q6=results[5],
+                p4q7=results[6],
+                p4q8=results[7],
+                p4f=2,
+            )
+
+        elif part == "6":
+            model.update(
+                p5q1=results[0],
+                p5q2=results[1],
+                p5q3=results[2],
+                p5q4=results[3],
+                p5q5=results[4],
+                p5q6=results[5],
+                p5q7=results[6],
+                p5q8=results[7],
+                p5f=2,
+            )
+
+        elif part == "7":
+            model.update(
+                p6q1=results[0],
+                p6q2=results[1],
+                p6q3=results[2],
+                p6q4=results[3],
+                p6q5=results[4],
+                p6q6=results[5],
+                p6q7=results[6],
+                p6q8=results[7],
+                p6f=2,
+            )
+
+        elif part == "end":
+            model.update(
+                p7q1=results[0],
+                p7q2=results[1],
+                p7q3=results[2],
+                p7q4=results[3],
+                p7q5=results[4],
+                p7q6=results[5],
+                p7q7=results[6],
+                p7q8=results[7],
+                p7f=2,
+                apf=True,
+            )
+
+
+def create_test_case(event_creator_name, member_number):
+    """Create 47 new member with their personality and a ne event."""
+    member = create_event_member(member_number)
+    print("1. {} Teilnehmer erstellt".format(member_number))
+    for usr in member:
+        create_data(usr)
+    print("2. Teilnehmern zufällige Werte für den Persönlichkeitstest\
+          zugeordnet")
+    event_name = create_event(event_creator_name, member)
+    print("3. Event `{}` erstellt (Eventersteller: {}) und Teilnehmer\
+          hinzugefügt".format(event_name, event_creator_name))
+
+
+if __name__ == '__main__':
+    member_number = int(input("Anzahl der User, die erstellt werden: "))
+    name = input("Gruppenersteller festelegen. Kürzel eines bereits "
+                 "existierenden Users eingeben (bspw. superuser verwenden): ")
+    create_test_case(name, member_number)

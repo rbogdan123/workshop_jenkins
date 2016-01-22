@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block head_title %}Öffentliche Veranstaltungen{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="container margin-top-20">
+
+    <!-- MESSAGES -->
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="alert alert-{{ message.tags }} list-unstyled"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Header -->
+    <h1 class="page-header">Öffentliche Veranstaltungen</h1>
+    {% if all_parts_finished = False %}
+    <p class="alert alert-warning">Solange noch kein <a href="{% url 'questionnaire_instructions' %}" class="alert-link">Persönlichkeitstest</a> abgeschlossen wurde, können Sie keiner Veranstaltung beitreten. Beim Ändern von Antworten einzelner Teile muss am Ende in Teil 7 nochmals "Persönlichkeitstest abschließen" geklickt werden.
+    </p>
+    {% endif %}
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    <span>Veranstaltungskürzel</span>
+                    <a data-toggle="collapse" data-target="#event_filter"
+                       class="btn glyphicon glyphicon glyphicon-filter"></a>
+
+                    <div id="event_filter" class="collapse">
+                        <form method="POST" class="margin-top-10">{% csrf_token %}
+                            <div class="input-group input-group-table">
+
+                                <a type="button" class="input-group-addon btn glyphicon glyphicon-filter"
+                                   data-placement="right" data-toggle="popover" title="Veranstaltungskürzel filtern"
+                                   data-content="Filtern Sie nach einem bestimmten Wort oder Buchstaben eines Gruppenkürzels. Groß- und Kleinschreibung spielen keine Rolle."></a>
+
+                                <input type="text" name="input_filter" class="form-control"
+                                       placeholder="Filter Veranstaltungskürzel">
+                            </div>
+                            <input type="submit" class="btn btn-sm btn-primary margin-top-10" name="filter_event"
+                                   value="Filtern">
+                            <a href="{% url 'event_public_list' %}" class="btn btn-xs btn-danger margin-top-10">Zurücksetzen</a>
+                        </form>
+                    </div>
+                </th>
+                <th>Veranstalter</th>
+                <th class="text-center">Beitreten</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in public_events|dictsortreversed:"event_changed_date" %}
+            <tr>
+                <td class="table-align-middle"><h4>{{ event.event_name }}</h4><i>Veröffentlicht
+                    am: </i>{{ event.event_public_date|date:"d.m.Y" }}</td>
+                <td class="table-align-middle">{{ event.event_creator }}</td>
+                {% if all_parts_finished %}
+                    {% if user in event.event_member.all %}
+                        <td class="table-align-middle text-center">Bereits beigetreten</td>
+                    {% else %}
+                        <td class="table-align-middle text-center">
+                            <a href="{% url 'event_public_member_enters' eventname=event.event_name %}"
+                               class="btn btn-primary">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span> Beitreten</span>
+                            </a>
+                        </td>
+                    {% endif %}
+                {% else %}
+                    <td class="table-align-middle text-center"><a href="#" class="btn btn-primary disabled">Beitreten</a>
+                    </td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td>Keine Veranstaltungen gefunden!</td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

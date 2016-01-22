@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block head_title %}Meine Gruppen{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="container margin-top-20">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Meine Gruppen</h1>
+        </div>
+    </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="alert alert-{{ message.tags }} list-unstyled"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% for entry, chart in dict_calculated_groups.items %}
+    <div class="row margin-top-50">
+        <div class="col-sm-2">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{ entry }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in entry.user_id.all %}
+                <tr>
+                    <td>{{ member }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-10">
+        {{ chart.render|safe }}
+        </div>
+    </div>
+    {% empty %}
+    <div class="row margin-top-20">
+        <div class="col-lg-12">
+            <p>Sie sind noch keinen Gruppen zugeteilt worden</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

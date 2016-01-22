@@ -1,0 +1,223 @@
+actionid: tox
+msg: packaging
+cmdargs: ['/usr/bin/python3', local('/home/jenkins/Desktop/workshop_jenkins/setup.py'), 'sdist', '--formats=zip', '--dist-dir', local('/home/jenkins/Desktop/workshop_jenkins/.tox/dist')]
+env: None
+
+running sdist
+running egg_info
+creating gruppeneinteilung.egg-info
+writing dependency_links to gruppeneinteilung.egg-info/dependency_links.txt
+writing top-level names to gruppeneinteilung.egg-info/top_level.txt
+writing requirements to gruppeneinteilung.egg-info/requires.txt
+writing gruppeneinteilung.egg-info/PKG-INFO
+writing manifest file 'gruppeneinteilung.egg-info/SOURCES.txt'
+reading manifest file 'gruppeneinteilung.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'gruppeneinteilung.egg-info/SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt
+
+running check
+creating gruppeneinteilung-0.0.1
+creating gruppeneinteilung-0.0.1/grpalloc
+creating gruppeneinteilung-0.0.1/scripts
+creating gruppeneinteilung-0.0.1/scripts/create_user_and_event
+creating gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu
+creating gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu/python
+creating gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu/shell
+creating gruppeneinteilung-0.0.1/grpalloc/core
+creating gruppeneinteilung-0.0.1/grpalloc/core/migrations
+creating gruppeneinteilung-0.0.1/grpalloc/core/static
+creating gruppeneinteilung-0.0.1/grpalloc/core/static/css
+creating gruppeneinteilung-0.0.1/grpalloc/core/static/css/images
+creating gruppeneinteilung-0.0.1/grpalloc/core/static/fonts
+creating gruppeneinteilung-0.0.1/grpalloc/core/static/img
+creating gruppeneinteilung-0.0.1/grpalloc/core/static/js
+creating gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor
+creating gruppeneinteilung-0.0.1/grpalloc/core/templates
+creating gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+creating gruppeneinteilung-0.0.1/grpalloc/core/views
+creating gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info
+creating gruppeneinteilung-0.0.1/tests
+making hard links in gruppeneinteilung-0.0.1...
+hard linking MANIFEST.in -> gruppeneinteilung-0.0.1
+hard linking setup.cfg -> gruppeneinteilung-0.0.1
+hard linking setup.py -> gruppeneinteilung-0.0.1
+hard linking tox.ini -> gruppeneinteilung-0.0.1
+hard linking grpalloc/__init__.py -> gruppeneinteilung-0.0.1/grpalloc
+hard linking grpalloc/settings.py -> gruppeneinteilung-0.0.1/grpalloc
+hard linking grpalloc/urls.py -> gruppeneinteilung-0.0.1/grpalloc
+hard linking grpalloc/wsgi.py -> gruppeneinteilung-0.0.1/grpalloc
+hard linking grpalloc/../LICENSE.txt -> gruppeneinteilung-0.0.1/grpalloc/..
+hard linking grpalloc/../manage.py -> gruppeneinteilung-0.0.1/grpalloc/..
+hard linking grpalloc/../requirements.txt -> gruppeneinteilung-0.0.1/grpalloc/..
+hard linking grpalloc/../scripts/create_user_and_event/anleitung.txt -> gruppeneinteilung-0.0.1/grpalloc/../scripts/create_user_and_event
+hard linking grpalloc/../scripts/create_user_and_event/create_user_and_event.py -> gruppeneinteilung-0.0.1/grpalloc/../scripts/create_user_and_event
+hard linking grpalloc/../scripts/installation_on_ubuntu/anleitung.txt -> gruppeneinteilung-0.0.1/grpalloc/../scripts/installation_on_ubuntu
+hard linking grpalloc/../scripts/installation_on_ubuntu/setup_part1.sh -> gruppeneinteilung-0.0.1/grpalloc/../scripts/installation_on_ubuntu
+hard linking grpalloc/../scripts/installation_on_ubuntu/setup_part2.sh -> gruppeneinteilung-0.0.1/grpalloc/../scripts/installation_on_ubuntu
+hard linking grpalloc/../scripts/installation_on_ubuntu/python/random_string.py -> gruppeneinteilung-0.0.1/grpalloc/../scripts/installation_on_ubuntu/python
+hard linking grpalloc/../scripts/installation_on_ubuntu/shell/qcluster.sh -> gruppeneinteilung-0.0.1/grpalloc/../scripts/installation_on_ubuntu/shell
+hard linking grpalloc/../scripts/installation_on_ubuntu/shell/runserver.sh -> gruppeneinteilung-0.0.1/grpalloc/../scripts/installation_on_ubuntu/shell
+hard linking grpalloc/core/__init__.py -> gruppeneinteilung-0.0.1/grpalloc/core
+hard linking grpalloc/core/admin.py -> gruppeneinteilung-0.0.1/grpalloc/core
+hard linking grpalloc/core/forms.py -> gruppeneinteilung-0.0.1/grpalloc/core
+hard linking grpalloc/core/models.py -> gruppeneinteilung-0.0.1/grpalloc/core
+hard linking grpalloc/core/migrations/0001_initial.py -> gruppeneinteilung-0.0.1/grpalloc/core/migrations
+hard linking grpalloc/core/migrations/__init__.py -> gruppeneinteilung-0.0.1/grpalloc/core/migrations
+hard linking grpalloc/core/static/apple-touch-icon.png -> gruppeneinteilung-0.0.1/grpalloc/core/static
+hard linking grpalloc/core/static/browserconfig.xml -> gruppeneinteilung-0.0.1/grpalloc/core/static
+hard linking grpalloc/core/static/favicon.ico -> gruppeneinteilung-0.0.1/grpalloc/core/static
+hard linking grpalloc/core/static/tile-wide.png -> gruppeneinteilung-0.0.1/grpalloc/core/static
+hard linking grpalloc/core/static/tile.png -> gruppeneinteilung-0.0.1/grpalloc/core/static
+hard linking grpalloc/core/static/css/bootstrap-theme.css -> gruppeneinteilung-0.0.1/grpalloc/core/static/css
+hard linking grpalloc/core/static/css/bootstrap-theme.min.css -> gruppeneinteilung-0.0.1/grpalloc/core/static/css
+hard linking grpalloc/core/static/css/bootstrap.css -> gruppeneinteilung-0.0.1/grpalloc/core/static/css
+hard linking grpalloc/core/static/css/bootstrap.min.css -> gruppeneinteilung-0.0.1/grpalloc/core/static/css
+hard linking grpalloc/core/static/css/jquery-ui.min.css -> gruppeneinteilung-0.0.1/grpalloc/core/static/css
+hard linking grpalloc/core/static/css/main.css -> gruppeneinteilung-0.0.1/grpalloc/core/static/css
+hard linking grpalloc/core/static/css/waitMe.min.css -> gruppeneinteilung-0.0.1/grpalloc/core/static/css
+hard linking grpalloc/core/static/css/images/ui-icons_444444_256x240.png -> gruppeneinteilung-0.0.1/grpalloc/core/static/css/images
+hard linking grpalloc/core/static/css/images/ui-icons_555555_256x240.png -> gruppeneinteilung-0.0.1/grpalloc/core/static/css/images
+hard linking grpalloc/core/static/css/images/ui-icons_777620_256x240.png -> gruppeneinteilung-0.0.1/grpalloc/core/static/css/images
+hard linking grpalloc/core/static/css/images/ui-icons_777777_256x240.png -> gruppeneinteilung-0.0.1/grpalloc/core/static/css/images
+hard linking grpalloc/core/static/css/images/ui-icons_cc0000_256x240.png -> gruppeneinteilung-0.0.1/grpalloc/core/static/css/images
+hard linking grpalloc/core/static/css/images/ui-icons_ffffff_256x240.png -> gruppeneinteilung-0.0.1/grpalloc/core/static/css/images
+hard linking grpalloc/core/static/fonts/glyphicons-halflings-regular.eot -> gruppeneinteilung-0.0.1/grpalloc/core/static/fonts
+hard linking grpalloc/core/static/fonts/glyphicons-halflings-regular.svg -> gruppeneinteilung-0.0.1/grpalloc/core/static/fonts
+hard linking grpalloc/core/static/fonts/glyphicons-halflings-regular.ttf -> gruppeneinteilung-0.0.1/grpalloc/core/static/fonts
+hard linking grpalloc/core/static/fonts/glyphicons-halflings-regular.woff -> gruppeneinteilung-0.0.1/grpalloc/core/static/fonts
+hard linking grpalloc/core/static/img/hhn_logo.png -> gruppeneinteilung-0.0.1/grpalloc/core/static/img
+hard linking grpalloc/core/static/img/logo.png -> gruppeneinteilung-0.0.1/grpalloc/core/static/img
+hard linking grpalloc/core/static/js/main.js -> gruppeneinteilung-0.0.1/grpalloc/core/static/js
+hard linking grpalloc/core/static/js/waitMe.min.js -> gruppeneinteilung-0.0.1/grpalloc/core/static/js
+hard linking grpalloc/core/static/js/vendor/bootstrap.js -> gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor
+hard linking grpalloc/core/static/js/vendor/bootstrap.min.js -> gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor
+hard linking grpalloc/core/static/js/vendor/jquery-1.11.2.min.js -> gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor
+hard linking grpalloc/core/static/js/vendor/jquery-ui.min.js -> gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor
+hard linking grpalloc/core/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js -> gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor
+hard linking grpalloc/core/static/js/vendor/npm.js -> gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor
+hard linking grpalloc/core/templates/404.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates
+hard linking grpalloc/core/templates/base.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates
+hard linking grpalloc/core/templates/humans.txt -> gruppeneinteilung-0.0.1/grpalloc/core/templates
+hard linking grpalloc/core/templates/robots.txt -> gruppeneinteilung-0.0.1/grpalloc/core/templates
+hard linking grpalloc/core/templates/grpalloc/events_entered.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/groups_list.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/groups_temporarily.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/index.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/login.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/my_events.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/navbar.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/profile.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/public_events.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/questionnaire_instructions.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/questionnaire_parts.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/templates/grpalloc/questionnaire_sidebar.html -> gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc
+hard linking grpalloc/core/views/__init__.py -> gruppeneinteilung-0.0.1/grpalloc/core/views
+hard linking grpalloc/core/views/event.py -> gruppeneinteilung-0.0.1/grpalloc/core/views
+hard linking grpalloc/core/views/general.py -> gruppeneinteilung-0.0.1/grpalloc/core/views
+hard linking grpalloc/core/views/ggrp.py -> gruppeneinteilung-0.0.1/grpalloc/core/views
+hard linking grpalloc/core/views/group.py -> gruppeneinteilung-0.0.1/grpalloc/core/views
+hard linking grpalloc/core/views/questionnaire.py -> gruppeneinteilung-0.0.1/grpalloc/core/views
+hard linking gruppeneinteilung.egg-info/PKG-INFO -> gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info
+hard linking gruppeneinteilung.egg-info/SOURCES.txt -> gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info
+hard linking gruppeneinteilung.egg-info/dependency_links.txt -> gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info
+hard linking gruppeneinteilung.egg-info/requires.txt -> gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info
+hard linking gruppeneinteilung.egg-info/top_level.txt -> gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info
+hard linking tests/__init__.py -> gruppeneinteilung-0.0.1/tests
+hard linking tests/test_html.py -> gruppeneinteilung-0.0.1/tests
+hard linking tests/test_smoketest.py -> gruppeneinteilung-0.0.1/tests
+hard linking tests/test_user.py -> gruppeneinteilung-0.0.1/tests
+copying setup.cfg -> gruppeneinteilung-0.0.1
+Writing gruppeneinteilung-0.0.1/setup.cfg
+creating .tox/dist
+creating '.tox/dist/gruppeneinteilung-0.0.1.zip' and adding 'gruppeneinteilung-0.0.1' to it
+adding 'gruppeneinteilung-0.0.1/tox.ini'
+adding 'gruppeneinteilung-0.0.1/setup.py'
+adding 'gruppeneinteilung-0.0.1/requirements.txt'
+adding 'gruppeneinteilung-0.0.1/MANIFEST.in'
+adding 'gruppeneinteilung-0.0.1/PKG-INFO'
+adding 'gruppeneinteilung-0.0.1/LICENSE.txt'
+adding 'gruppeneinteilung-0.0.1/manage.py'
+adding 'gruppeneinteilung-0.0.1/setup.cfg'
+adding 'gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info/requires.txt'
+adding 'gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info/dependency_links.txt'
+adding 'gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info/top_level.txt'
+adding 'gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info/PKG-INFO'
+adding 'gruppeneinteilung-0.0.1/gruppeneinteilung.egg-info/SOURCES.txt'
+adding 'gruppeneinteilung-0.0.1/scripts/create_user_and_event/create_user_and_event.py'
+adding 'gruppeneinteilung-0.0.1/scripts/create_user_and_event/anleitung.txt'
+adding 'gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu/setup_part2.sh'
+adding 'gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu/anleitung.txt'
+adding 'gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu/setup_part1.sh'
+adding 'gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu/python/random_string.py'
+adding 'gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu/shell/qcluster.sh'
+adding 'gruppeneinteilung-0.0.1/scripts/installation_on_ubuntu/shell/runserver.sh'
+adding 'gruppeneinteilung-0.0.1/grpalloc/__init__.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/urls.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/wsgi.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/settings.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/__init__.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/forms.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/models.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/admin.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/browserconfig.xml'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/favicon.ico'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/apple-touch-icon.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/tile.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/tile-wide.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/js/waitMe.min.js'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/js/main.js'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor/bootstrap.min.js'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor/jquery-ui.min.js'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor/bootstrap.js'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor/jquery-1.11.2.min.js'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/js/vendor/npm.js'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/main.css'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/bootstrap-theme.min.css'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/bootstrap.min.css'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/waitMe.min.css'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/bootstrap-theme.css'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/jquery-ui.min.css'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/bootstrap.css'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/images/ui-icons_777777_256x240.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/images/ui-icons_555555_256x240.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/images/ui-icons_cc0000_256x240.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/images/ui-icons_ffffff_256x240.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/images/ui-icons_444444_256x240.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/css/images/ui-icons_777620_256x240.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/img/logo.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/img/hhn_logo.png'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/fonts/glyphicons-halflings-regular.eot'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/fonts/glyphicons-halflings-regular.woff'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/fonts/glyphicons-halflings-regular.svg'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/static/fonts/glyphicons-halflings-regular.ttf'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/migrations/__init__.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/migrations/0001_initial.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/views/__init__.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/views/ggrp.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/views/event.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/views/questionnaire.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/views/general.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/views/group.py'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/base.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/404.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/humans.txt'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/robots.txt'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/groups_list.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/public_events.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/index.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/groups_temporarily.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/profile.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/navbar.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/questionnaire_sidebar.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/events_entered.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/login.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/questionnaire_instructions.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/my_events.html'
+adding 'gruppeneinteilung-0.0.1/grpalloc/core/templates/grpalloc/questionnaire_parts.html'
+adding 'gruppeneinteilung-0.0.1/tests/__init__.py'
+adding 'gruppeneinteilung-0.0.1/tests/test_smoketest.py'
+adding 'gruppeneinteilung-0.0.1/tests/test_html.py'
+adding 'gruppeneinteilung-0.0.1/tests/test_user.py'
+removing 'gruppeneinteilung-0.0.1' (and everything under it)

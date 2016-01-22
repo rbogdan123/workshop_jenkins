@@ -1,0 +1,510 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.inline{
+    display: inline-block;
+}
+
+.block {
+    display: block;
+}
+
+.transparent-bg {
+    background-color: transparent;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.margin-top-50 {
+    margin-top: 50px;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.margin-left-50 {
+    margin-left: 50px;
+}
+
+/* ==========================================================================
+   Login
+   ========================================================================== */
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* ==========================================================================
+   Content / Body
+   ========================================================================== */
+
+body {
+	background: #cdcdcd;
+    padding-top: 50px; /* Platz für den header */
+    padding-bottom: 20px; /* Platz für den footer */
+}
+
+.container {
+	padding-top: 0;
+}
+
+.panel {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.messages {
+    margin: 10px 0 0 -35px;
+}
+
+/* ==========================================================================
+   Inputs
+   ========================================================================== */
+
+/* for the .form-control icon spans
+It overrides the top: 1px; from the .glyphicon*/
+.input-group-addon:first-child {
+    top: 0;
+}
+
+.input-group-table {
+    max-width: 300px;
+}
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+/* overrides the bootstrap orig class */
+.modal-header {
+    color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #428bca;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+
+.modal-header-danger {
+    background-color: #d9534f;
+}
+
+.modal-header-warning {
+    background-color: #f0ad4e;
+}
+
+/* ==========================================================================
+   Welcome / Info Text (LOGIN PAGE)
+   ========================================================================== */
+
+.welcome-text {
+	background: #e8e8e8;
+	max-width: 500px; /* Breite des Willkommenstextes */
+	margin: 0 auto; /* Mittige Zentrierung */
+	margin-top: 60px;
+	padding: 40px 30px; /* Padding oben und unten 40px, rechts und links 30px */
+	border-radius: 8px;
+	-webkit-box-shadow: 0 0 10px -3px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 0 10px -3px rgba(0,0,0,0.4);
+	box-shadow: 0 0 10px -3px rgba(0,0,0,0.4);
+}
+
+.welcome-text img {
+	max-height: 80px;
+	margin: 0 auto; /* Mittige Zentrierung */
+}
+
+.welcome-text h1 {
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.welcome-text p {
+	text-align: justify;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.table tbody>tr>td.table-align-middle{
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   Chart Placeholder
+   ========================================================================== */
+
+.chart-placeholder{
+    padding: 50px 0 50px 0;
+    margin: 10px;
+    background-color: #ddd;
+}
+
+/* ==========================================================================
+   Navigation bar
+   ========================================================================== */
+
+.navbar-default .navbar-brand {
+    padding: 0; /* Damit das Logo bündig am oberen Rand sitzt */
+}
+
+.hhn-logo{
+	height: 57px; /* Höhe des Logos */
+	width: auto; /* automatische breite / Proportionaö zur Höhe */
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+/* Hintergrund */
+.navbar-default {
+	background-image: linear-gradient(to bottom, #9d9ea0 0px, #9d9ea0 100%); /*bg image, gradient möglich */
+	background-color: #9d9ea0; /* HIntergrund Farbe = image */
+	border-bottom: 7px solid  #DEDEDE;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #9d9ea0;
+}
+
+.navbar-collapse {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.1) inset;
+}
+
+@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+
+/* ==========================================================================
+   Glyphicon
+   ========================================================================== */
+
+.glyphicon-right {
+    float: right;
+}
+
+.glyphicon-sidebar {
+    margin: 10px 35px 0 0;
+}
+
+.glyphicon-success {
+	color: green;
+}
+
+.glyphicon-not-finished {
+	color: gray;
+}
+
+/* ==========================================================================
+   Questionnaire / Fragebogen
+   ========================================================================== */
+
+.sidebar-nav-button {
+	margin: 10px 0 0 -10px;
+}
+
+.progress {
+	margin-top: 20px;
+}
+
+.row-questionnaire {
+	padding: 12px 0;
+}
+
+.row-questionnaire p {
+	margin: 0;
+}
+
+@media(max-width:992px) {
+	.row-questionnaire p {
+	margin: 0 0 10px;
+}
+}
+
+.row-white {
+	background: #eee;
+}
+
+.row-padding-7 {
+    padding: 7px;
+}
+
+.sidebar-nav > li > a {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+@media(min-width:768px) {
+	.sidebar-nav-button {
+		display: none;
+	}
+}
+
+.page-header {
+	padding-bottom: 9px;
+	margin: 25px 0px 20px;
+	border-bottom: 1px solid #9d9ea0;
+}
+
+.sub-header {
+	padding: 7px 0 15px 0;
+	font-size: 20px;
+}
+
+.btn-questaionnaire {
+	margin-top: 15px;
+	float: right; /* rechtsbündig */
+}
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 200px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 200px;
+    width: 0;
+    height: 100%;
+    margin-left: -200px;
+    overflow-y: auto; /* enables scrolling */
+    background: #eee;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 200px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -200px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #0075bb;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #000;
+    background: #ccc; 
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #000;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #0075bb; 			/* blue logo hs */
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 200px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 200px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+/* ==========================================================================
+   Radiobuttons (outcommented - don't work as expected)
+   ========================================================================== */
+
+/*
+
+input[type=radio] {
+    display:none; 
+    margin:10px;
+}
+
+label[for*="pointsq"]
+{
+	display:inline-block;
+    margin:-2px;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+    background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+    background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+    background-repeat: repeat-x;
+    border: 1px solid #ccc;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+    border-bottom-color: #b3b3b3;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+}
+
+
+
+label[for*="pointsq"]:checked + *
+{
+	background-image: none;
+    background-color:#00ffff;
+}
+
+.checked {
+	background-color:#00ffff;
+}
+ */

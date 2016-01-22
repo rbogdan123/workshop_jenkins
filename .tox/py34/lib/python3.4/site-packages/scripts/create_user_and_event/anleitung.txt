@@ -1,0 +1,13 @@
+Terminal öffnen und folgende Befehle ausführen:
+
+----------------------------------------------------
+
+workon grp_dev
+
+cd path/to/grp/grpalloc/scripts/create_user_and_event
+
+python create_user_and_event.py
+
+---------------------------------------------------
+
+Den weiteren Anweisungen folgen

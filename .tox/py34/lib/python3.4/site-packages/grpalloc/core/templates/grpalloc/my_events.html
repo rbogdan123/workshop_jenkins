@@ -1,0 +1,492 @@
+{% extends "base.html" %}
+{% block head_title %}Meine Veranstaltungen{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container margin-top-20">
+    <div class="panel panel-primary margin-top-20">
+        <div class="panel-heading">
+            <h4>Neue Veranstaltung erstellen</h4>
+        </div>
+        <div class="panel-body">
+
+            <form method=POST>{% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="input-group">
+
+                            <a type="button" class="input-group-addon btn glyphicon glyphicon-pencil"
+                               data-placement="right" data-toggle="popover" title="Veranstaltungskürzel festlegen"
+                               data-content="Das Veranstaltungskürzel muss einmalig sein. Es darf nur Klein- und Großbuchstaben, Bindestriche '-' und Underscores '_' beinhalten. Die maximale Zeichenlänge beträgt 24 Zeichen. Solange die Veranstaltung noch nicht veröffentlicht wurde, kann der Name noch geändert werden."></a>
+
+                            <span>{{ form_create_event.event_name }}</span>
+                        </div>
+                        <label class="margin-top-10">Löschdatum:</label>
+
+                        <div class="input-group">
+
+                            <a type="button" class="input-group-addon btn glyphicon glyphicon-calendar"
+                               data-placement="right" data-toggle="popover" title="Löschdatum festlegen"
+                               data-content="Das Löschdatum legt fest, bis wann die Veranstaltung existiert. Solange die Veranstaltung noch nicht veröffentlicht wurde, kann das Löschdatum noch geändert werden."></a>
+
+                            <span>{{ form_create_event.expiration_date }}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="submit" class="btn btn-primary" name="new_event" value="Erstellen">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- ERRORS/MESSAGES -->
+
+    {% for field in form_create_event %}
+        {% for error in field.errors %}
+            <ul class="messages">
+                <li class="alert alert-warning list-unstyled">{{ error|escape }}</li>
+            </ul>
+        {% endfor %}
+    {% endfor %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %}
+                class="alert alert-{{ message.tags }} list-unstyled"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% for field in form_edit_event_name %}
+        {% for error in field.errors %}
+            <ul class="messages">
+                <li class="alert alert-warning list-unstyled">{{ error|escape }}</li>
+            </ul>
+        {% endfor %}
+    {% endfor %}
+
+    <!-- END ERRORS/MESSAGES -->
+
+    <h2 class="sub_header margin-top-50">Bereits erstellte Veranstaltungen</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                <label>Veranstaltungskürzel</label>
+                <a data-toggle="collapse" data-target="#event_filter"
+                   class="btn glyphicon glyphicon glyphicon-filter"></a>
+
+                <div id="event_filter" class="collapse">
+                    <form method="POST" class="margin-top-10">{% csrf_token %}
+                        <div class="input-group input-group-table">
+
+                            <a type="button" class="input-group-addon btn glyphicon glyphicon-filter"
+                               data-placement="right" data-toggle="popover" title="Veranstaltungskürzel filtern"
+                               data-content="Filtern Sie nach einem bestimmten Wort oder Buchstaben eines Veranstaltungskürzels. Groß- und Kleinschreibung spielen keine Rolle."></a>
+
+                            <input type="text" name="input_filter" class="form-control"
+                                   placeholder="Filter Veranstaltungskürzel">
+                        </div>
+                        <input type="submit" class="btn btn-sm btn-primary margin-top-10" name="filter_event"
+                               value="Filtern">
+                        <a href="{% url 'event_new' %}" class="btn btn-xs btn-danger margin-top-10">Zurücksetzen</a>
+                    </form>
+                </div>
+            </th>
+            <th>Bisherige Teilnehmer</th>
+            <th class="text-center">Aktion</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in myevent|dictsortreversed:"event_changed_date" %}
+        <tr>
+            <td class="table-align-middle">
+                <p>
+                <h4>{{ i.event_name }}
+                    <!-- SHOW THE 'CHANGE NAME BUTTON' ONLY IF THE EVENT IS PUBLIC AND IT'S THE EVENT CREATOR -->
+                {% if i.event_public == False and i.event_creator == user.username %}
+                    <a data-toggle="collapse" data-target="#event_edit_{{ i }}"
+                       class="btn glyphicon glyphicon glyphicon-pencil"></a>
+                {% endif %}
+                </h4>
+
+                <div id="event_edit_{{ i }}" class="collapse">
+                    <form action="{% url 'event_new' edit=i.event_name %}" method="POST" class="margin-top-10">
+                        {% csrf_token %}
+                        <div class="input-group input-group-table">
+
+                            <a type="button" class="input-group-addon btn glyphicon glyphicon-pencil"
+                               data-placement="right" data-toggle="popover"
+                               title="Veranstaltungskürzel festlegen"
+                               data-content="Das Veranstaltungskürzel muss einmalig sein. Es darf nur Klein- und Großbuchstaben, Bindestriche '-' und Underscores '_' beinhalten. Die maximale Zeichenlänge beträgt 24 Zeichen. Solange die Veranstaltung noch nicht veröffentlicht wurde, kann der Name noch geändert werden."></a>
+
+                            {{ form_edit_event_name.event_name }}
+                        </div>
+                        <label class="margin-top-10">Löschdatum:</label>
+
+                        <div class="input-group input-group-table">
+
+                            <a type="button" class="input-group-addon btn glyphicon glyphicon-calendar"
+                               data-placement="right" data-toggle="popover" title="Löschdatum festlegen"
+                               data-content="Das Löschdatum legt fest, bis wann die Veranstaltung existiert. Solange die Veranstaltung noch nicht veröffentlicht wurde, kann das Löschdatum noch geändert werden."></a>
+
+                            {{ form_edit_event_name.expiration_date }}
+                        </div>
+                        <!-- UPDATE NAME BUTTON -->
+                        <p class="margin-top-10">
+                            <input type="submit" class="btn btn-sm btn-primary" name="edit_event"
+                                   value="Name und Datum ändern">
+                            <a data-toggle="collapse" data-target="#event_edit_{{ i }}"
+                               class="btn btn-xs btn-danger">Abbrechen</a>
+                        </p>
+                    </form>
+                </div>
+                </p>
+                <p><i>Gütlig bis:</i> {{ i.expiration_date|date:"d.m.Y" }}</p>
+                <i>Status: </i>
+                {% if i.event_calculated %}
+                <span class="glyphicon glyphicon-repeat"> </span>
+                <span> berechnet</span>
+                {% elif i.event_closed %}
+                <span class="glyphicon glyphicon-lock"> </span>
+                <span> geschlossen</span>
+                {% elif i.event_public %}
+                <span class="glyphicon glyphicon-globe"> </span>
+                <span> öffentlich</span>
+                {% else %}
+                <span class="glyphicon glyphicon-home"> </span>
+                <span> privat</span>
+                {% endif %}
+
+                <button type="button" class="btn btn-xs margin-top-10 block transparent-bg" data-toggle="modal"
+                        data-target="#deleteModal-{{ i.event_name }}">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+
+            </td>
+
+            <td class="table-align-middle">
+                <!-- MEMBERS -->
+                {% if i.event_member.all|length == 0 %}
+                    {% if i.event_public %}
+                        <span>Noch keine Teilnehmer</span>
+                    {% else %}
+                        <span>Es können keine Teilnehmer beitreten, bitte Status ändern</span>
+                    {% endif %}
+                {% elif i.event_member.all|length == 1 %}
+                    <p><strong>{{ i.event_member.all|length }}</strong> Teilnehmer:</p>
+                    {% for m in i.event_member.all %}
+                        {{ m }}
+                    {% endfor %}
+                    {% if i.event_calculated == False %}
+                        <p class="margin-top-10">
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                    data-target="#memberModal-{{ i.event_name }}">
+                                <span class="glyphicon glyphicon-wrench"></span>
+                                <span> Teilnehmer verwalten</span>
+                            </button>
+                        </p>
+                    {% endif %}
+                {% else %}
+                    <p><strong>{{ i.event_member.all|length }}</strong> Teilnehmer:</p>
+                    {% for m in i.event_member.all %}
+                        {{ m }}&nbsp;&nbsp;
+                    {% endfor %}
+                    {% if i.event_calculated == False %}
+                    <p class="margin-top-10">
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                data-target="#memberModal-{{ i.event_name }}">
+                            <span class="glyphicon glyphicon-wrench"></span>
+                            <span> Teilnehmer verwalten</span>
+                        </button>
+                    </p>
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td class="table-align-middle text-center">
+                {% if i.event_creator == user.username %}
+                    <p>
+                        {% if i.event_calculated %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#membercalculatedModal-{{ i.event_name }}">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span> Gruppen anzeigen</span>
+                        </button>
+                        {% elif i.event_closed %}
+                        <a href="{% url 'event_reopen' eventname=i.event_name %}"
+                           class="btn btn-primary">
+                            <span class="glyphicon glyphicon-lock"></span>
+                            <span> Wieder öffnen</span>
+                        </a>
+                        </p><p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#calculateModal-{{ i.event_name }}">
+                            <span class="glyphicon glyphicon-repeat"></span>
+                            <span> Berechnung starten</span>
+                        </button>
+                        {% elif i.event_public %}
+                        <a href="{% url 'event_close' eventname=i.event_name %}"
+                           class="btn btn-primary">
+                            <span class="glyphicon glyphicon-lock"></span>
+                            <span> Schließen</span>
+                        </a>
+                        {% else %}
+                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                data-target="#publicModal-{{ i.event_name }}">
+                            <span class="glyphicon glyphicon-globe"></span>
+                            <span> Veröffentlichen</span>
+                        </button>
+                        {% endif %}
+                    </p>
+
+                    {% if i.event_member.all|length != 0 %}
+
+                    <!-- Modal Calculate -->
+                    <div id="memberModal-{{ i.event_name }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close"
+                                            data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title">Teilnehmer verwalten</h3>
+                                </div>
+                                <div class="modal-body text-left">
+
+                                    {% for m in i.event_member.all %}
+                                        <div class="row row-padding-7 {% if forloop.counter|divisibleby:2 %}row-white{% endif %}">
+                                            <div class="col-xs-4">
+                                                {{ m }}
+                                            </div>
+                                            <div class="col-xs-8 text-right">
+                                                <a data-toggle="collapse"
+                                                   data-target="#remove_member_{{ m }}_from_{{ i.event_name }}"
+                                                   class="btn glyphicon glyphicon glyphicon-trash btn-danger">Entfernen</a>
+
+                                                <div id="remove_member_{{ m }}_from_{{ i.event_name }}"
+                                                     class="collapse text-center margin-top-10">
+                                                    <p>Wollen Sie den Teilnehmer `{{ m }}` wirklich aus der
+                                                        Veranstaltung entfernen? Dies kann nicht rückgängig
+                                                        gemacht werden</p>
+                                                    <a data-toggle="collapse"
+                                                       data-target="#remove_member_{{ m }}_from_{{ i.event_name }}"
+                                                       class="btn btn-default text-left">Nein, Abbrechen</a>
+                                                    <a href="{% url 'event_creator_kicks_member' member=m eventname=i.event_name %}"
+                                                       class="btn btn-danger text-right">Ja, Entfernen</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        Fertig
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                    {% if i.event_calculated %}
+
+                    <!-- Modal Members caluculated -->
+                    <div id="membercalculatedModal-{{ i.event_name }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close"
+                                            data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title">Gruppen der
+                                        Veranstaltung {{ i.event_name }}</h3>
+                                </div>
+                                <div class="modal-body text-left">
+                                    {% for group, value in groups.items %}
+                                        {% if group == i.event_name %}
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Gruppenname</th>
+                                                    <th>Teilnehmer</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for v in value %}
+                                                    <tr>
+                                                        <td>{{ v.group_name }}</td>
+                                                        <td>
+                                                            {% for member in v.user_id.all %}
+                                                                {{ member }}&nbsp;&nbsp;
+                                                            {% endfor %}
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        Abbrechen
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {% elif i.event_closed %}
+
+                    <!-- Modal Calculate -->
+                    <div id="calculateModal-{{ i.event_name }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close"
+                                            data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title">Berechnung starten</h3>
+                                </div>
+                                <form action="{% url 'groups_temporarily' eventname=i.event_name %}"
+                                      method="POST">
+                                    {% csrf_token %}
+                                    <div class="modal-body">
+                                        <p>Bitte geben Sie die maximale Anzahl an Mitgliedern pro Gruppe
+                                            ein:</p>
+                                        <input type="text" name="max_group_size" placeholder="z.B. 5">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            Abbrechen
+                                        </button>
+                                        <button type="submit" id="calculateButton-{{ i.event_name }}"
+                                                class="btn btn-primary" name="calculate">Berechnung
+                                            starten</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <script>
+                        $(function () {
+                            // none, bounce, rotateplane, stretch, orbit,
+                            // roundBounce, win8, win8_linear or ios
+                            var current_effect = 'roundBounce'; //
+                            $('#calculateButton-{{i.event_name}}').click(function () {
+                                run_waitMe(current_effect);
+                            });
+                            function run_waitMe(effect) {
+                                $('body').waitMe({
+
+                                    //none, rotateplane, stretch, orbit, roundBounce, win8,
+                                    //win8_linear, ios, facebook, rotation, timer, pulse,
+                                    //progressBar, bouncePulse or img
+                                    effect: effect,
+                                    //place text under the effect (string).
+                                    text: 'Berechnung läuft, Bitte warten ...',
+                                    //background for container (string).
+                                    bg: 'rgba(255,255,255,0.7)',
+                                    //color for background animation and text (string).
+                                    color: '#000',
+                                    //change width for elem animation (string).
+                                    sizeW: '',
+                                    //change height for elem animation (string).
+                                    sizeH: '',
+                                    // url to image
+                                    source: '',
+                                    // callback
+                                    onClose: function () {
+                                    }
+                                });
+                            }
+                        });
+                    </script>
+
+                    {% else %}
+                    <!-- Modal Public -->
+                    <div id="publicModal-{{ i.event_name }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header modal-header-warning">
+                                    <button type="button" class="close"
+                                            data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title">Warnung</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{ i.event_name }} wirklich veröffentlichen?</p>
+
+                                    <p>Danach kann weder der Veranstaltungsname noch das Löschdatum
+                                        geändert werden.</p>
+
+                                    <p>Dies kann nicht rückgängig gemacht werden!</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        Abbrechen
+                                    </button>
+                                    <a href="{% url 'event_public' eventname=i.event_name %}"
+                                       class="btn btn-warning">Veröffentlichen</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Modal Delete -->
+                    <div id="deleteModal-{{ i.event_name }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header modal-header-danger">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title">Achtung</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{ i.event_name }} wirklich löschen?</p>
+
+                                    <p>Dies kann nicht rückgängig gemacht werden!</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        Abbrechen
+                                    </button>
+                                    <a href="{% url 'event_delete' eventname=i.event_name %}"
+                                       class="btn btn-danger">Löschen</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>Keine Veranstaltungen gefunden!</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

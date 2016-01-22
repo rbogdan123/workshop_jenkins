@@ -1,0 +1,15 @@
+Oeffnen Sie ein Terminal
+
+Gehen Sie in der Menueleiste auf Edit > Profiles > New
+und geben Sie als Name "hold" (kleingeschrieben) ein
+KLicken Sie anschliessend auf Create
+Wechselns Sie nun yum Reiter "Title and Command" und wechseln Sie den Reiter unten von "Exit the terminal" auf "Hold the terminal open"
+Schliessen Sie die Einstellungen und kehren Sie zum Terminal zurueck
+
+Geben Sie folgende Befehle ein>
+
+cd path/to/grp_install_script
+chmod +x setup_part1.sh
+./setup_part1.sh
+
+Folgenden Sie nun allen weiteren Anleitungen

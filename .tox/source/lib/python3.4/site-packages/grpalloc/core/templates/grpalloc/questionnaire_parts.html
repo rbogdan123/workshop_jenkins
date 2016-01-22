@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block head_title %}Fragebogen{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% block questionnaire_sidebar %}
+        {% include 'grpalloc/questionnaire_sidebar.html' %}
+    {% endblock %}
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Button to toggle the menu in mobile (<768px) version -->
+                    <div class="sidebar-nav-button">
+                        <a href="#menu-toggle" class="btn btn-lg btn-default" id="menu-toggle">
+                            <span class="glyphicon glyphicon-align-justify"></span>
+                        </a>
+                    </div>
+
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %}
+                                    class="{{ message.tags }} alert alert-danger list-unstyled"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    <!-- Header -->
+                    <h1 class="page-header">{{ questions.primary_header }}{{ q_part }}</h1>
+
+                    <h2 class="sub-header">{{ questions.sub_header }}</h2>
+
+                    <form action="{% url 'questionnaire_parts' part=questions.next_q_part %}" method="post">
+
+                        <!-- Neccessary for security reasons -->
+                        {% csrf_token %}
+
+                        <div class="row row-questionnaire row-white">
+
+                            <!-- Frage 1 -->
+                            <div class="col-md-7">
+                                <p>{{ questions.q1 }}</p>
+                            </div>
+                            <div class="col-md-5 text-center">
+
+                                {{ form.pointsq1 }}
+
+                            </div>
+                        </div>
+                        <div class="row row-questionnaire">
+
+                            <!-- Frage 2 -->
+                            <div class="col-md-7">
+                                <p>{{ questions.q2 }}</p>
+                            </div>
+                            <div class="col-md-5 text-center">
+
+                                {{ form.pointsq2 }}
+
+                            </div>
+                        </div>
+
+                        <div class="row row-questionnaire row-white">
+
+                            <!-- Frage 3 -->
+                            <div class="col-md-7">
+                                <p>{{ questions.q3 }}</p>
+                            </div>
+                            <div class="col-md-5 text-center">
+
+                                {{ form.pointsq3 }}
+
+                            </div>
+                        </div>
+
+
+                        <div class="row row-questionnaire">
+
+                            <!-- Frage 4 -->
+                            <div class="col-md-7">
+                                <p>{{ questions.q4 }}</p>
+                            </div>
+                            <div class="col-md-5 text-center">
+
+                                {{ form.pointsq4 }}
+
+                            </div>
+                        </div>
+
+                        <div class="row row-questionnaire row-white">
+
+                            <!-- Frage 5 -->
+                            <div class="col-md-7">
+                                <p>{{ questions.q5 }}</p>
+                            </div>
+                            <div class="col-md-5 text-center">
+
+                                {{ form.pointsq5 }}
+
+                            </div>
+                        </div>
+
+                        <div class="row row-questionnaire">
+
+                            <!-- Frage 6 -->
+                            <div class="col-md-7">
+                                <p>{{ questions.q6 }}</p>
+                            </div>
+                            <div class="col-md-5 text-center">
+
+                                {{ form.pointsq6 }}
+
+                            </div>
+                        </div>
+
+                        <div class="row row-questionnaire row-white">
+
+                            <!-- Frage 7 -->
+                            <div class="col-md-7">
+                                <p>{{ questions.q7 }}</p>
+                            </div>
+                            <div class="col-md-5 text-center">
+
+                                {{ form.pointsq7 }}
+
+                            </div>
+                        </div>
+
+                        <div class="row row-questionnaire">
+
+                            <!-- Frage 8 -->
+                            <div class="col-md-7">
+                                <p>{{ questions.q8 }}</p>
+                            </div>
+                            <div class="col-md-5 text-center">
+
+                                {{ form.pointsq8 }}
+
+                            </div>
+                        </div>
+
+                        <!-- button which loads the next part until part 7, then it shows Persönlichkeitstest beenden and redirects to 
+                        the profile.html -->
+                        <input type="submit" class="btn btn-danger btn-lg btn-questaionnaire"
+                               value="{{ questions.button_value }}"/>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+{% endblock %}

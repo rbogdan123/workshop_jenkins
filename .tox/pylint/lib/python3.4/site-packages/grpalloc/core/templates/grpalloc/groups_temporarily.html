@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block head_title %}Gruppen berechnen{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="container margin-top-50">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page_header">{{ name }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <form action="{% url 'groups_temporarily' eventname=name %}" method="POST">
+                {% csrf_token %}
+                <p>Gewählte Maximale Gruppengröße: <input name="max_group_size" value="{{ max_group_size }}"></p>
+
+                <div class="text-left inline">
+                    <button name="calculate" id="calculateButton" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                        <span> Neu berechnen</span>
+                    </button>
+                </div>
+            </form>
+            <a href="{% url 'event_new' edit="f" %}" class="btn btn-default margin-top-10">
+                <span class="glyphicon glyphicon-cancel"></span>
+                <span> Abbrechen</span>
+            </a>
+        </div>
+        <div class="col-sm-3 text-right margin-top-10 inline">
+            <a href="{% url 'groups_save' results=results_url eventname=name %}" class="btn btn-primary">
+                <span class="glyphicon glyphicon-save"></span>
+                <span> Gruppen speichern</span>
+            </a>
+        </div>
+    </div>
+    {% for chart, member in results.items %}
+    <div class="row margin-top-20">
+        <div class="col-sm-2">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Gruppe # {{ forloop.counter }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for m in member %}
+                <tr>
+                    <td>{{ m }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-10">
+        {% if member|length <= 1 %}
+            <div class="chart-placeholder text-center">
+                Nur ein Mitglied, kein Diagramm verfügbar
+            </div>
+        {% else %}
+            {{ chart.render|safe }}
+        {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    $(function () {
+        // none, bounce, rotateplane, stretch, orbit,
+        // roundBounce, win8, win8_linear or ios
+        var current_effect = 'roundBounce'; //
+        $('#calculateButton').click(function () {
+            run_waitMe(current_effect);
+        });
+
+        function run_waitMe(effect) {
+            $('body').waitMe({
+                //none, rotateplane, stretch, orbit, roundBounce, win8,
+                //win8_linear, ios, facebook, rotation, timer, pulse,
+                //progressBar, bouncePulse or img
+                effect: effect,
+                //place text under the effect (string).
+                text: 'Berechnung läuft, Bitte warten ...',
+                //background for container (string).
+                bg: 'rgba(255,255,255,0.7)',
+                //color for background animation and text (string).
+                color: '#000',
+                //change width for elem animation (string).
+                sizeW: '',
+                //change height for elem animation (string).
+                sizeH: '',
+                // url to image
+                source: '',
+                // callback
+                onClose: function () {
+                }
+            });
+        }
+    });
+</script>
+
+{% endblock %}

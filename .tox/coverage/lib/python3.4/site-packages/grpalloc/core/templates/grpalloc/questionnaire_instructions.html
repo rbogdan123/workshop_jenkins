@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block head_title %}Fragebogen Anweisungen{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% block questionnaire_sidebar %}
+        {% include 'grpalloc/questionnaire_sidebar.html' %}
+    {% endblock %}
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="#menu-toggle" class="btn btn-default sidebar-nav-button" id="menu-toggle">Menü
+                        anzeigen</a>
+
+                    <h1 class="page-header">Fragebogen</h1>
+
+                    <h2 class="sub-header">Anweisungen</h2>
+
+                    <p>Bitte befolgen Sie für jeden der sieben Teile des Fragebogens die folgenden Punkte:</p>
+                    <ul>
+                        <li>Lesen Sie zuerst die acht vorgeschlagenen Behauptungen</li>
+                        <li>Verteilen Sie dann insgesamt zehn Punkte auf die acht Behauptungen, dem Grad
+                            entsprechend, auf den sie für Sie zutreffen.
+                        </li>
+                        <li>Sie können entweder maximal 10 Punkte einer einzigen Behauptung zuteilen
+                            oder diese 10 Punkte auf einige oder alle Behauptungen verteilen, wie Sie meinen, dass
+                            es für Sie zutrifft.
+                        </li>
+                        <li>Die entsprechende Punktzahl tragen Sie bitte nach jeder Behauptung ein</li>
+                    </ul>
+                    <a href="{% url 'questionnaire_parts' part="1" %}"
+                       class="btn btn-primary btn-lg btn-questaionnaire">Beginnen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+{% endblock %}

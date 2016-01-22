@@ -1,0 +1,27 @@
+<!-- Diese HTML exisitert nur vorübergehend, da Login final über PopUp erfolgen wird -->
+{% extends "base.html" %}
+{% block head_title %}Anmelden{% endblock %}
+{% block navbar %}
+    {% include 'grpalloc/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<!-- Login-Formular mit Nutzerkennung und Passwort -->
+<div class="container margin-top-50">
+    <form method="post" action="/login/" class="form-signin">
+        {% if form.errors %}
+        <ul class="messages">
+            <p class="alert alert-danger list-unstyled">Ihre Nutzerkennung und/oder Ihr Passwort ist falsch. Versuchen Sie es bitte noch einmal.</p>
+        </ul>
+        {% endif %}
+        {% csrf_token %}
+        <label for="inputEmail" class="sr-only">Nutzerkennung</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Nutzerkennung" autofocus>
+        <label for="inputPassword" class="sr-only">Passwort</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Passwort">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    </form>
+
+</div> <!-- /container -->
+<!-- Ende Formular -->
+{% endblock %}
